@@ -1,4 +1,5 @@
 let myLibrary = [];
+let root = document.querySelector('#root');
 
 function Book(title, author, pages, read, info) {
   this.title = title;
@@ -47,5 +48,37 @@ const createInitialBooks = () => {
   myLibrary.push(shadowDance);
 };
 
+const displayBooks = (count) => {
+  console.log(count);
+  if(myLibrary.length === count ) {
+    return;
+  }
+  let book = myLibrary[count]
+  const bookWrapper = document.createElement('div');
+  const bookTitle = document.createElement('h2');
+  const bookAuthor = document.createElement('h3');
+  const bookRead = document.createElement('h3');
+  const bookPages = document.createElement('p');
+  const bookDesc = document.createElement('p');
+  
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = book.author;
+  bookRead.textContent = book.read ? 'Read': 'Not Read';
+  bookPages.textContent = book.pages;
+  bookDesc.textContent = book.info();
+
+  bookWrapper.classList.toggle('book');
+  bookWrapper.appendChild(bookTitle);
+  bookWrapper.appendChild(bookAuthor);
+  bookWrapper.appendChild(bookRead);
+  bookWrapper.appendChild(bookPages);
+  bookWrapper.appendChild(bookDesc);
+  root.appendChild(bookWrapper);
+  //count++
+  displayBooks(++count); // needs to be prefix cause return value 
+}
+
 createInitialBooks();
-console.log(myLibrary);
+//console.log(myLibrary);
+
+displayBooks(0);
