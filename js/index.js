@@ -68,6 +68,7 @@ const displayBooks = (count) => {
   bookDesc.textContent = book.info();
 
   bookWrapper.classList.toggle('book');
+  bookWrapper.setAttribute('data-index', count);
   bookWrapper.appendChild(bookTitle);
   bookWrapper.appendChild(bookAuthor);
   bookWrapper.appendChild(bookRead);

@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/style.css">
-  <title>The Library</title>
-</head>
-<body>
-  <div id="root">
-    <header>
-      <h1>The Library</h1>
-    </header>
-    <div class="book-grid">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>The Library</title>
+  </head>
+  <body>
+    <div id="root">
+      <div class="form-wrapper">
+        <form action="">
+          <header>
+            <h2>New Book Form</h2>
+          </header>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" />
 
+          <label for="author">Author</label>
+          <input type="text" id="author" name="author" />
+
+          <label for="pages">Num of Pages</label>
+          <input type="number" id="pages" name="pages" />
+
+          <div class="radio-wrapper">
+            <div>
+              <input type="radio" id="read" name="read_or_not" value="true" />
+              <label for="read">Read</label><br />
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="notRead"
+                name="read_or_not"
+                value="false"
+              />
+              <label for="css">Not Read</label><br />
+            </div>
+          </div>
+
+          <label for="bookInfo">Book Description</label>
+          <textarea id="bookInfo" name="bookInfo" rows="4" cols="50"></textarea>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <header>
+        <h1>The Library</h1>
+        <button>+ New Book</button>
+      </header>
+      <div class="book-grid"></div>
     </div>
-  </div>
-  <script src="./js/index.js"></script>
-</body>
+    <script src="./js/index.js"></script>
+  </body>
 </html>
