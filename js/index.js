@@ -9,6 +9,9 @@ function Book(title, author, pages, read, info) {
   this.pages = pages;
   this.read = read;
   this.info = () => info;
+  this.changeReadStatus = () => {
+    this.read = !this.read;
+  };
 }
 
 function addBookToLibrary(arr) {
@@ -73,8 +76,8 @@ const displayBooks = (count) => {
   const bookPages = document.createElement("p");
   const bookDesc = document.createElement("p");
   const controlsWrapper = document.createElement("div");
-  const removeButton = document.createElement('span');
-  const readButton = document.createElement('span');
+  const removeButton = document.createElement("span");
+  const readButton = document.createElement("span");
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
@@ -86,11 +89,12 @@ const displayBooks = (count) => {
   removeButton.classList.toggle("remove");
   removeButton.setAttribute("data-index", count);
 
-  readButton.textContent ="R";
-  readButton.classList.toggle('read-button');
-  readButton.setAttribute('data-index', count);
+  readButton.textContent = "R";
+  readButton.classList.toggle("read-button");
+  readButton.classList.toggle(book.read ? "read" : "unread");
+  readButton.setAttribute("data-index", count);
 
-  controlsWrapper.classList.add('controls-wrapper');
+  controlsWrapper.classList.add("controls-wrapper");
   controlsWrapper.appendChild(readButton);
   controlsWrapper.appendChild(removeButton);
   bookTitle.appendChild(controlsWrapper);
@@ -149,13 +153,27 @@ const removeBookFromArray = (index) => {
   initializeListeners();
 };
 
+const addReadButtonListener = () => {
+  const readButtons = document.querySelectorAll(".book span.read-button");
+  readButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const buttonindex = button.getAttribute("data-index");
+      myLibrary[buttonindex].changeReadStatus();
+      initializeListeners();
+    });
+  });
+};
+
+// const changeReadStatus = () => {
+
+// }
+
 const initializeListeners = () => {
   clearBooks();
   displayBooks(0);
-  initializeRemoveBookListener(); 
-}
-
-
+  initializeRemoveBookListener();
+  addReadButtonListener();
+};
 
 const main = () => {
   createInitialBooks();

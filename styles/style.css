@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap");
 
 .book-grid {
   display: flex;
@@ -35,13 +35,16 @@
   cursor: pointer;
 }
 
-.book .remove:hover {
+.book .remove:hover,
+.book .read-button:hover,
+.book .read-button.read:hover {
   color: rgb(219, 39, 39);
 }
 
 .book .read-button {
   font-size: 2rem;
   color: #aaa;
+  cursor: pointer;
 }
 
 .book .read-button.read {
@@ -58,7 +61,7 @@
   visibility: hidden;
 }
 
-.form-wrapper.display{
+.form-wrapper.display {
   position: absolute;
   height: 100vh;
   visibility: visible;
@@ -79,10 +82,11 @@ header {
 body {
   background-color: #000;
   color: #fff;
-  font-family: 'Sen', sans-serif;
+  font-family: "Sen", sans-serif;
 }
 
-h2,h3 {
+h2,
+h3 {
   margin-bottom: 10px;
 }
 
@@ -91,7 +95,8 @@ p {
   margin-bottom: 8px;
 }
 
-button, form input[type='submit'] {
+button,
+form input[type="submit"] {
   border-style: none;
   border-radius: 2rem;
   background-color: #ffa834;
@@ -101,7 +106,8 @@ button, form input[type='submit'] {
   cursor: pointer;
 }
 
-button:hover, form input[type='submit']:hover {
+button:hover,
+form input[type="submit"]:hover {
   background-color: #e9901b;
 }
 
@@ -130,12 +136,13 @@ form header {
   padding: 0;
 }
 
-form input, form textarea {
+form input,
+form textarea {
   width: 100%;
   margin-bottom: 20px;
 }
 
-form input[type='submit'], form .radio-wrapper input {
+form input[type="submit"],
+form .radio-wrapper input {
   width: initial;
 }
-
