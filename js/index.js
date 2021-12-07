@@ -1,6 +1,7 @@
 let myLibrary = [];
 let bookGrid = document.querySelector(".book-grid");
 let form = document.querySelector('form');
+let formWrapper = document.querySelector('.form-wrapper');
 
 function Book(title, author, pages, read, info) {
   this.title = title;
@@ -88,7 +89,10 @@ const displayBooks = (count) => {
 };
 
 const initializeSubmitNewBook = () => {
-  
+  const newBookButton = document.querySelector('.new-book');
+  newBookButton.addEventListener('click', () => {
+    formWrapper.classList.add('display');
+  });
 
   // SubmitListener
   form.addEventListener('submit', (e) => {
@@ -102,6 +106,7 @@ const initializeSubmitNewBook = () => {
       dataArr.push(pair[1]);
     }
     addBookToLibrary(dataArr);
+    formWrapper.classList.remove('display');
   });
 }
 

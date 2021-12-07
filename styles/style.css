@@ -16,14 +16,20 @@
   padding: 10px;
 }
 
-.form-wrapper form.display{
+.form-wrapper {
   background-color: #000;
   width: 100%;
-  height: 100vh;
-  position: absolute;
+  height: 0vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
+}
+
+.form-wrapper.display{
+  position: absolute;
+  height: 100vh;
+  visibility: visible;
 }
 
 body,
@@ -67,9 +73,9 @@ button:hover, form input[type='submit']:hover {
   background-color: #e9901b;
 }
 
-form.display {
+/* form.display {
   position: absolute;
-}
+} */
 
 form {
   display: flex;
