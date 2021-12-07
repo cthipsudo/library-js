@@ -1,5 +1,5 @@
 let myLibrary = [];
-let root = document.querySelector('#root');
+let bookGrid = document.querySelector('.book-grid');
 
 function Book(title, author, pages, read, info) {
   this.title = title;
@@ -64,7 +64,7 @@ const displayBooks = (count) => {
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
   bookRead.textContent = book.read ? 'Read': 'Not Read';
-  bookPages.textContent = book.pages;
+  bookPages.textContent = `Pages: ${book.pages}`;
   bookDesc.textContent = book.info();
 
   bookWrapper.classList.toggle('book');
@@ -73,7 +73,7 @@ const displayBooks = (count) => {
   bookWrapper.appendChild(bookRead);
   bookWrapper.appendChild(bookPages);
   bookWrapper.appendChild(bookDesc);
-  root.appendChild(bookWrapper);
+  bookGrid.appendChild(bookWrapper);
   //count++
   displayBooks(++count); // needs to be prefix cause return value 
 }

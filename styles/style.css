@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
+
+body,
+body * {
+  margin: 0;
+}
+
+header {
+  padding: 2vw;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Sen', sans-serif;
+}
+
+h2,h3 {
+  margin-bottom: 10px;
+}
+
+p {
+  color: rgb(68, 61, 61);
+  margin-bottom: 8px;
+}
+
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2vw;
+  gap: 2vw;
+}
+
+.book-grid .book {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  color: #000;
+  height: auto;
+  width: calc(44vw);
+  padding: 10px;
+}
