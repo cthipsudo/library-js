@@ -16,6 +16,23 @@
   padding: 10px;
 }
 
+.book-grid .book h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book .remove {
+  color: red;
+  font-size: 2rem;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.book .remove:hover {
+  color: rgb(219, 39, 39);
+}
+
 .form-wrapper {
   background-color: #000;
   width: 100%;

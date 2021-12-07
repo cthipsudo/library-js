@@ -1,7 +1,7 @@
 let myLibrary = [];
 let bookGrid = document.querySelector(".book-grid");
-let form = document.querySelector('form');
-let formWrapper = document.querySelector('.form-wrapper');
+let form = document.querySelector("form");
+let formWrapper = document.querySelector(".form-wrapper");
 
 function Book(title, author, pages, read, info) {
   this.title = title;
@@ -12,13 +12,16 @@ function Book(title, author, pages, read, info) {
 }
 
 function addBookToLibrary(arr) {
-  const book = new Book(arr[0], arr[1], +arr[2], arr[3] === 'true' ? true : false, arr[4])
+  const book = new Book(
+    arr[0],
+    arr[1],
+    +arr[2],
+    arr[3] === "true" ? true : false,
+    arr[4]
+  );
   myLibrary.push(book);
   // clear and display books
-  while (bookGrid.firstChild) {
-    bookGrid.removeChild(bookGrid.firstChild);
-  }
-  displayBooks(0);
+  initializeListeners();
 }
 
 const createInitialBooks = () => {
@@ -69,12 +72,17 @@ const displayBooks = (count) => {
   const bookRead = document.createElement("h3");
   const bookPages = document.createElement("p");
   const bookDesc = document.createElement("p");
+  const removeBookButton = document.createElement("span");
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
   bookRead.textContent = book.read ? "Read" : "Not Read";
   bookPages.textContent = `Pages: ${book.pages}`;
   bookDesc.textContent = book.info();
+  removeBookButton.textContent = "x";
+  removeBookButton.classList.toggle("remove");
+  removeBookButton.setAttribute("data-index", count);
+  bookTitle.appendChild(removeBookButton);
 
   bookWrapper.classList.toggle("book");
   bookWrapper.setAttribute("data-index", count);
@@ -89,13 +97,13 @@ const displayBooks = (count) => {
 };
 
 const initializeSubmitNewBook = () => {
-  const newBookButton = document.querySelector('.new-book');
-  newBookButton.addEventListener('click', () => {
-    formWrapper.classList.add('display');
+  const newBookButton = document.querySelector(".new-book");
+  newBookButton.addEventListener("click", () => {
+    formWrapper.classList.add("display");
   });
 
   // SubmitListener
-  form.addEventListener('submit', (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     //console.log('Hello');
     const formData = new FormData(form);
@@ -106,15 +114,43 @@ const initializeSubmitNewBook = () => {
       dataArr.push(pair[1]);
     }
     addBookToLibrary(dataArr);
-    formWrapper.classList.remove('display');
+    formWrapper.classList.remove("display");
   });
+};
+
+const clearBooks = () => {
+  while (bookGrid.firstChild) {
+    bookGrid.removeChild(bookGrid.firstChild);
+  }
+};
+
+const initializeRemoveBookListener = () => {
+  const removeButtons = document.querySelectorAll(".book span.remove");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      removeBookFromArray(+button.getAttribute("data-index"));
+    });
+  });
+};
+
+const removeBookFromArray = (index) => {
+  myLibrary.splice(index, 1);
+  initializeListeners();
+};
+
+const initializeListeners = () => {
+  clearBooks();
+  displayBooks(0);
+  initializeRemoveBookListener(); 
 }
+
+
 
 const main = () => {
   createInitialBooks();
   initializeSubmitNewBook();
   //console.log(myLibrary);
-  displayBooks(0);
+  initializeListeners();
 };
 
 main();
