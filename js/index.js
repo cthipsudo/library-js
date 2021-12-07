@@ -1,5 +1,6 @@
 let myLibrary = [];
-let bookGrid = document.querySelector('.book-grid');
+let bookGrid = document.querySelector(".book-grid");
+let form = document.querySelector('form');
 
 function Book(title, author, pages, read, info) {
   this.title = title;
@@ -9,7 +10,15 @@ function Book(title, author, pages, read, info) {
   this.info = () => info;
 }
 
-function addBookToLibrary() {}
+function addBookToLibrary(arr) {
+  const book = new Book(arr[0], arr[1], +arr[2], arr[3] === 'true' ? true : false, arr[4])
+  myLibrary.push(book);
+  // clear and display books
+  while (bookGrid.firstChild) {
+    bookGrid.removeChild(bookGrid.firstChild);
+  }
+  displayBooks(0);
+}
 
 const createInitialBooks = () => {
   let alice = new Book(
@@ -49,26 +58,25 @@ const createInitialBooks = () => {
 };
 
 const displayBooks = (count) => {
-  console.log(count);
-  if(myLibrary.length === count ) {
+  if (myLibrary.length === count) {
     return;
   }
-  let book = myLibrary[count]
-  const bookWrapper = document.createElement('div');
-  const bookTitle = document.createElement('h2');
-  const bookAuthor = document.createElement('h3');
-  const bookRead = document.createElement('h3');
-  const bookPages = document.createElement('p');
-  const bookDesc = document.createElement('p');
-  
+  let book = myLibrary[count];
+  const bookWrapper = document.createElement("div");
+  const bookTitle = document.createElement("h2");
+  const bookAuthor = document.createElement("h3");
+  const bookRead = document.createElement("h3");
+  const bookPages = document.createElement("p");
+  const bookDesc = document.createElement("p");
+
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
-  bookRead.textContent = book.read ? 'Read': 'Not Read';
+  bookRead.textContent = book.read ? "Read" : "Not Read";
   bookPages.textContent = `Pages: ${book.pages}`;
   bookDesc.textContent = book.info();
 
-  bookWrapper.classList.toggle('book');
-  bookWrapper.setAttribute('data-index', count);
+  bookWrapper.classList.toggle("book");
+  bookWrapper.setAttribute("data-index", count);
   bookWrapper.appendChild(bookTitle);
   bookWrapper.appendChild(bookAuthor);
   bookWrapper.appendChild(bookRead);
@@ -76,10 +84,32 @@ const displayBooks = (count) => {
   bookWrapper.appendChild(bookDesc);
   bookGrid.appendChild(bookWrapper);
   //count++
-  displayBooks(++count); // needs to be prefix cause return value 
+  displayBooks(++count); // needs to be prefix cause return value
+};
+
+const initializeSubmitNewBook = () => {
+  
+
+  // SubmitListener
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    //console.log('Hello');
+    const formData = new FormData(form);
+    //console.log(formData.entries());
+    let dataArr = [];
+    for (let pair of formData.entries()) {
+      //console.log(pair);
+      dataArr.push(pair[1]);
+    }
+    addBookToLibrary(dataArr);
+  });
 }
 
-createInitialBooks();
-//console.log(myLibrary);
+const main = () => {
+  createInitialBooks();
+  initializeSubmitNewBook();
+  //console.log(myLibrary);
+  displayBooks(0);
+};
 
-displayBooks(0);
+main();
