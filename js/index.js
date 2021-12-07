@@ -164,10 +164,6 @@ const addReadButtonListener = () => {
   });
 };
 
-// const changeReadStatus = () => {
-
-// }
-
 const initializeListeners = () => {
   clearBooks();
   displayBooks(0);
