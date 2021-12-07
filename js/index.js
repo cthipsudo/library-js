@@ -72,17 +72,28 @@ const displayBooks = (count) => {
   const bookRead = document.createElement("h3");
   const bookPages = document.createElement("p");
   const bookDesc = document.createElement("p");
-  const removeBookButton = document.createElement("span");
+  const controlsWrapper = document.createElement("div");
+  const removeButton = document.createElement('span');
+  const readButton = document.createElement('span');
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
   bookRead.textContent = book.read ? "Read" : "Not Read";
   bookPages.textContent = `Pages: ${book.pages}`;
   bookDesc.textContent = book.info();
-  removeBookButton.textContent = "x";
-  removeBookButton.classList.toggle("remove");
-  removeBookButton.setAttribute("data-index", count);
-  bookTitle.appendChild(removeBookButton);
+
+  removeButton.textContent = "x";
+  removeButton.classList.toggle("remove");
+  removeButton.setAttribute("data-index", count);
+
+  readButton.textContent ="R";
+  readButton.classList.toggle('read-button');
+  readButton.setAttribute('data-index', count);
+
+  controlsWrapper.classList.add('controls-wrapper');
+  controlsWrapper.appendChild(readButton);
+  controlsWrapper.appendChild(removeButton);
+  bookTitle.appendChild(controlsWrapper);
 
   bookWrapper.classList.toggle("book");
   bookWrapper.setAttribute("data-index", count);

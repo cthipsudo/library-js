@@ -22,15 +22,30 @@
   align-items: center;
 }
 
+.book .controls-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-right: 10px;
+}
+
 .book .remove {
   color: red;
   font-size: 2rem;
   cursor: pointer;
-  padding-right: 10px;
 }
 
 .book .remove:hover {
   color: rgb(219, 39, 39);
+}
+
+.book .read-button {
+  font-size: 2rem;
+  color: #aaa;
+}
+
+.book .read-button.read {
+  color: #000;
 }
 
 .form-wrapper {
