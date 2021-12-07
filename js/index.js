@@ -89,7 +89,7 @@ const displayBooks = (count) => {
   removeButton.classList.toggle("remove");
   removeButton.setAttribute("data-index", count);
 
-  readButton.textContent = "R";
+  readButton.textContent = "Read";
   readButton.classList.toggle("read-button");
   readButton.classList.toggle(book.read ? "read" : "unread");
   readButton.setAttribute("data-index", count);
